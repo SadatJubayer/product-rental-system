@@ -123,9 +123,12 @@ src
 +-- types            # shared types used across the entire application.
 |
 +-- utils            # shared utility functions.
-eslintrc.json        # Adds the ESLint configuration for the project.
-prettierrc.js        # Adds the Prettier configuration for the project.
-tailwind.config.js   # TailwindCSS configuration file. Added some global theming here.
+|
++ eslintrc.json        # Adds the ESLint configuration for the project.
+|
++ prettierrc.js        # Adds the Prettier configuration for the project.
+|
++ tailwind.config.js   # TailwindCSS configuration file. Added some global theming here.
 ```
 
 ## 💻 Technical Choices
