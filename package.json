@@ -21,10 +21,11 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint src",
-        "lint:fix": "eslint src --quiet --fix"
+        "lint:fix": "eslint src --quiet --fix",
+        "test": "react-scripts test --verbose",
+        "test:cov": "yarn test --coverage --watchAll=false"
     },
     "eslintConfig": {
         "extends": [
@@ -62,5 +63,11 @@
         "postcss": "^8.4.18",
         "prettier": "^2.7.1",
         "tailwindcss": "^3.2.2"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "./src/components/**/*.tsx",
+            "./src/pages/**/*.tsx"
+        ]
     }
 }
