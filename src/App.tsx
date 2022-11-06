@@ -1,4 +1,5 @@
-import HelloWorld from 'components/HelloWorld';
+import { Layout } from 'components';
+import ProductList from 'features/product-list';
 import { useProducts } from 'hooks';
 
 const App = () => {
@@ -6,7 +7,11 @@ const App = () => {
     const haveProducts = state.products.length > 0;
 
     if (haveProducts) {
-        return <HelloWorld />;
+        return (
+            <Layout>
+                <ProductList />
+            </Layout>
+        );
     }
     return <h1>No Products found</h1>;
 };
