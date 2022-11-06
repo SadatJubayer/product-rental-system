@@ -1,7 +1,9 @@
 import { useProducts } from 'hooks';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ProductListHeader from './ProductListHeader';
 import ProductListTable from './ProductListTable';
+import _ from 'lodash';
+import { IProduct } from 'types/IProduct';
 
 const ProductList = () => {
     const { state } = useProducts();
@@ -25,10 +27,15 @@ const ProductList = () => {
         }
     }, [searchValue, state.products]);
 
+    const sortProducts = (sortType: keyof IProduct) => {
+        const sortedProducts = _.sortBy(state.products, (product) => product[sortType]);
+        setFilteredProducts(sortedProducts);
+    };
+
     return (
         <>
             <ProductListHeader searchValue={searchValue} onSearch={onSearchProducts} />
-            <ProductListTable products={filteredProducts} />
+            <ProductListTable onSort={sortProducts} products={filteredProducts} />
         </>
     );
 };
