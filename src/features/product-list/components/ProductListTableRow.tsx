@@ -10,6 +10,7 @@ interface ITableRowItemProps {
 const ProductListTableRow = ({ product, serial }: ITableRowItemProps) => {
     const { availability, needing_repair, name, code, durability, max_durability, mileage } =
         product;
+
     return (
         <tr>
             <td>{serial}</td>

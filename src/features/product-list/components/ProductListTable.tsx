@@ -1,10 +1,12 @@
 import { strings } from 'constants/strings';
-import { useProducts } from 'hooks';
+import { IProduct } from 'types/IProduct';
 import ProductListTableRow from './ProductListTableRow';
 
-export const ProductListTable = () => {
-    const { state } = useProducts();
+interface IProductTableProps {
+    products: IProduct[];
+}
 
+export const ProductListTable = ({ products }: IProductTableProps) => {
     return (
         <div className="max-h-[70vh] overflow-scroll">
             <table>
@@ -20,7 +22,7 @@ export const ProductListTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {state.products.map((product, idx) => (
+                    {products.map((product, idx) => (
                         <ProductListTableRow
                             key={product.code}
                             product={product}

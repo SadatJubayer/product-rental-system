@@ -8,6 +8,7 @@ export const strings = {
     need_to_repair: 'Need to repair',
     durability: 'Durability',
     mileage: 'Mileage',
+    search_product: 'Search products by name or code',
 
     book: 'Book',
     return: 'Return',
