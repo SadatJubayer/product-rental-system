@@ -1,17 +1,12 @@
-import { Layout } from 'components';
-import ProductList from 'features/product-list';
 import { useProducts } from 'hooks';
+import { ProductsPage } from 'pages';
 
 const App = () => {
     const { state } = useProducts();
     const haveProducts = state.products.length > 0;
 
     if (haveProducts) {
-        return (
-            <Layout>
-                <ProductList />
-            </Layout>
-        );
+        return <ProductsPage />;
     }
     return <h1>No Products found</h1>;
 };
