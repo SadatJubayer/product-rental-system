@@ -8,12 +8,24 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: npm install
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: npm-${{ hashFiles('package-lock.json') }}
+                  restore-keys: npm-
+            - run: npm ci
             - run: npm run lint
     test:
         name: Test (jest)
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: npm install
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: npm-${{ hashFiles('package-lock.json') }}
+                  restore-keys: npm-
+            - run: npm ci
             - run: npm run test
