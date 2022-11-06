@@ -107,11 +107,12 @@ const ProductReturnForm = ({ onCancel, onProceed }: IReturnProps) => {
                     value={mileage}
                     onChange={(e) => setMileage(e.target.value)}
                 />
-                <div className="flex items-center space-x-2.5">
+                <div className="flex justify-start items-center space-x-2.5">
                     <Input
                         defaultChecked={needRepair}
                         onChange={() => setNeedRepair(!needRepair)}
                         type="checkbox"
+                        fullWidth={false}
                         id="needRepair"
                         name="need-to-repair"
                     />
