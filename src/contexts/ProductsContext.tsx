@@ -7,7 +7,13 @@ type State = {
     loading: boolean;
     products: IProduct[];
 };
-type Action = { type: 'init' };
+type Action =
+    | { type: 'init' }
+    | { type: 'bookProduct'; payload: string }
+    | {
+          type: 'returnProduct';
+          payload: { productCode: string; needRepair: boolean; daysUsed: number; mileage: number };
+      };
 
 type Dispatch = (action: Action) => void;
 type ProductsProviderProps = { children: React.ReactNode };
