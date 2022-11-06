@@ -1,5 +1,5 @@
 import { useProducts } from 'hooks';
-import { ProductsPage } from 'pages';
+import { ProductsPage, ProductSeederPage } from 'pages';
 
 const App = () => {
     const { state } = useProducts();
@@ -8,7 +8,7 @@ const App = () => {
     if (haveProducts) {
         return <ProductsPage />;
     }
-    return <h1>No Products found</h1>;
+    return <ProductSeederPage />;
 };
 
 export default App;

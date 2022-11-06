@@ -1,6 +1,8 @@
+import { STORE_KEY_PRODUCTS } from 'constants/common';
 import { dummyProducts } from 'data/dummyProducts';
 import React, { createContext } from 'react';
 import { IProduct } from 'types/IProduct';
+import { loadState, saveState } from 'utils/storage';
 
 /* Types */
 type State = {
@@ -8,7 +10,7 @@ type State = {
     products: IProduct[];
 };
 type Action =
-    | { type: 'init' }
+    | { type: 'seedProducts' }
     | { type: 'bookProduct'; payload: string }
     | {
           type: 'returnProduct';
@@ -25,14 +27,15 @@ export const ProductsContext = createContext<{ state: State; dispatch: Dispatch 
 
 const defaultState = {
     loading: false,
-    products: dummyProducts,
+    products: loadState(STORE_KEY_PRODUCTS) || [],
 };
 
 /* Reducer */
 function productsReducer(state: State, action: Action): State {
     switch (action.type) {
-        case 'init': {
-            return { ...state };
+        case 'seedProducts': {
+            saveState(STORE_KEY_PRODUCTS, dummyProducts);
+            return { ...state, products: dummyProducts };
         }
         case 'bookProduct': {
             const theProduct = state.products.find((product) => product.code === action.payload);
@@ -42,6 +45,7 @@ function productsReducer(state: State, action: Action): State {
                     if (product.code !== action.payload) return product;
                     return { ...product, availability: false };
                 });
+                saveState(STORE_KEY_PRODUCTS, updatedProducts);
                 return { ...state, products: updatedProducts };
             }
             return { ...state };
@@ -80,6 +84,8 @@ function productsReducer(state: State, action: Action): State {
                         durability,
                     };
                 });
+
+                saveState(STORE_KEY_PRODUCTS, updatedProducts);
                 return { ...state, products: updatedProducts };
             }
             return { ...state };
